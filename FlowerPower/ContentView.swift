@@ -9,10 +9,33 @@
 import SwiftUI
 
 struct ContentView : View {
+    var testFlowers : [TestFlower] = testFlowerData
     var body: some View {
-        Text("Hello World")
+        NavigationView {
+            List(testFlowers) { testFlower in
+                FlowerCell(testFlower: testFlower)
+            }
+            .navigationBarTitle("Test Flowers")
+        }
     }
 }
+
+struct FlowerCell : View {
+    var testFlower : TestFlower
+    var body: some View {
+        return NavigationLink(destination: FlowerDetail(testFlower: testFlower)){
+            HStack{
+                Image(testFlower.imageName)
+                    .resizable()
+                    .frame(width: 100, height: 60)
+                
+                Text(testFlower.name)
+            }
+        }
+    }
+}
+
+
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
