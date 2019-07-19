@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TestFlower : Identifiable {
+struct Flower : Identifiable {
     var id = UUID()
     var name : String
     var actualClass : String
@@ -16,9 +16,9 @@ struct TestFlower : Identifiable {
 }
 
 let testFlowerData = [
-    TestFlower(name: "test", actualClass: "daisy"),
-    TestFlower(name: "testD", actualClass: "dandelion"),
-    TestFlower(name: "testR", actualClass: "rose"),
-    TestFlower(name: "testS", actualClass: "sunflower"),
-    TestFlower(name: "testT", actualClass: "tulip")
+    Flower(name: "test", actualClass: "daisy"),
+    Flower(name: "testD", actualClass: "dandelion"),
+    Flower(name: "testR", actualClass: "rose"),
+    Flower(name: "testS", actualClass: "sunflower"),
+    Flower(name: "testT", actualClass: "tulip")
 ]

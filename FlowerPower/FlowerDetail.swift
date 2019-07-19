@@ -12,28 +12,26 @@ import Vision
 import UIKit
 
 struct FlowerDetail : View {
-    let testFlower: TestFlower
+    let flower: Flower
     
     @State var matchResults = "Click below to run the identifier"
     
     var body: some View {
         VStack {
-            Image(testFlower.imageName)
+            Image(flower.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-            
-            Text(testFlower.name)
             Spacer()
             Text(matchResults)
             Button(action: { self.identifyFlower() }) {
                 Text("IDENTIFY")
             }
         }
-        .navigationBarTitle(Text(testFlower.name), displayMode: .inline)
+        .navigationBarTitle(Text(flower.name), displayMode: .inline)
     }
     
     func identifyFlower(){
-        let error = buildAndRunClassificationRequest(imageName: testFlower.imageName)
+        let error = buildAndRunClassificationRequest(imageName: flower.imageName)
         if (error != nil) {
             print(error!)
         }
@@ -74,7 +72,7 @@ struct FlowerDetail : View {
                 if let results = request.results as? [VNClassificationObservation] {
                     print("\(results.first!.identifier) : \(results.first!.confidence)")
                     if results.first!.confidence > 0.9 {
-                        self.matchResults = results.first!.identifier == self.testFlower.actualClass ? "Match!" : "Not a match!"
+                        self.matchResults = results.first!.identifier == self.flower.actualClass ? "Match!" : "Not a match!"
                     }
                 }
             })
@@ -91,7 +89,7 @@ struct FlowerDetail : View {
 struct FlowerDetail_Previews : PreviewProvider {
     static var previews: some View {
         NavigationView{
-            FlowerDetail(testFlower: testFlowerData[0])
+            FlowerDetail(flower: testFlowerData[0])
         }
     }
 }

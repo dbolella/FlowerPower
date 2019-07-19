@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct ContentView : View {
-    var testFlowers : [TestFlower] = testFlowerData
+    var flowers : [Flower] = testFlowerData
     var body: some View {
         NavigationView {
-            List(testFlowers) { testFlower in
-                FlowerCell(testFlower: testFlower)
+            List(flowers) { flower in
+                FlowerCell(flower: flower)
             }
             .navigationBarTitle("Test Flowers")
         }
@@ -21,21 +21,19 @@ struct ContentView : View {
 }
 
 struct FlowerCell : View {
-    var testFlower : TestFlower
+    var flower : Flower
     var body: some View {
-        return NavigationLink(destination: FlowerDetail(testFlower: testFlower)){
+        return NavigationLink(destination: FlowerDetail(flower: flower)){
             HStack{
-                Image(testFlower.imageName)
+                Image(flower.imageName)
                     .resizable()
                     .frame(width: 100, height: 60)
                 
-                Text(testFlower.name)
+                Text(flower.name)
             }
         }
     }
 }
-
-
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
